@@ -21,11 +21,11 @@ def main():
         iam_cli.create_user(UserName=iam_user_name)
     except Exception as e:
         if e.response["Error"]["Code"] == "EntityAlreadyExists":
-            print "IAM user with this username already exists"
+            print("IAM user with this username already exists")
             sys.exit()
         else:
-            print e
+            print(e)
             sys.exit()
     iam_cli.create_login_profile(UserName=iam_user_name, Password=password, PasswordResetRequired=False)
     iam_cli.attach_user_policy(Username=iam_user_name, PolicyARN=Policy_ARN)
-    print f"IAM Username = {iam_user_name}, Password = {password}"
+    print(f"IAM Username = {iam_user_name}, Password = {password}")
